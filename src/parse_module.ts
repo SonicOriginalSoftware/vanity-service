@@ -1,6 +1,10 @@
 import type { Module } from "./module.ts"
+import { VcsVariant } from "./vcs_variant.js"
 
-export async function parse(path: string): Promise<Module> {
+export async function parse(
+  path: string,
+  vcsVariant: VcsVariant = VcsVariant.Git
+): Promise<Module> {
   const parts = path.split("/").filter(Boolean)
   if (parts.length < 2)
     throw new Error("Invalid path. Module path must have at least two segments (user/repo).")
@@ -15,7 +19,7 @@ export async function parse(path: string): Promise<Module> {
     version = version.substring(1)
   }
 
-  const module: Module = { name, version }
+  const module: Module = { name, version, vcsVariant }
 
   return module
 }

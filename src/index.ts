@@ -36,7 +36,13 @@ async function fetch(request: Request, env: Env): Promise<Response> {
 
   console.debug("Looking up module:", module)
 
-  const html = await render(env.ORIGINAL_HOST, env.REDIRECT_HOST, module.name, module.version)
+  const html = await render(
+    env.ORIGINAL_HOST,
+    env.REDIRECT_HOST,
+    module.name,
+    module.version,
+    module.vcsVariant
+  )
 
   return new Response(html, { headers: { "Content-Type": "text/html" } })
 }

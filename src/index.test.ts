@@ -3,6 +3,7 @@ import { expect, test } from "vitest"
 import { semanticVersionFull, validPath } from "../test/data.js"
 import { env } from "../test/env.js"
 import all from "./index.js"
+import { VcsVariant } from "./vcs_variant.js"
 
 test("invalid method request", async () => {
   const request = new Request(`${env.ORIGINAL_HOST}/${validPath}`, { method: "POST" })
@@ -47,7 +48,7 @@ test("invalid path request", async () => {
 test("valid request", async () => {
   const original = `${env.ORIGINAL_HOST}/${validPath}/v${semanticVersionFull}`
   const request = new Request(`${original}?go-get=1`)
-  const meta = `<meta name="go-import" content="${original} mod ${env.REDIRECT_HOST}/${validPath}" />`
+  const meta = `<meta name="go-import" content="${original} ${VcsVariant.Git} ${env.REDIRECT_HOST}/${validPath}" />`
   const html = `
   <!DOCTYPE html>
   <html lang="en">

@@ -7,7 +7,8 @@ import { render } from "./html.js"
 test("valid name and version", async () => {
   const original = `${env.ORIGINAL_HOST}/${validPath}/v${semanticVersionFull}`
   const redirect = `${env.REDIRECT_HOST}/${validPath}`
-  const meta = `<meta name="go-import" content="${original} mod ${redirect}" />`
+  const vcsVariant = "mod"
+  const meta = `<meta name="go-import" content="${original} ${vcsVariant} ${redirect}" />`
   const html = `
   <!DOCTYPE html>
   <html lang="en">
@@ -21,7 +22,8 @@ test("valid name and version", async () => {
     env.ORIGINAL_HOST,
     env.REDIRECT_HOST,
     validPath,
-    semanticVersionFull
+    semanticVersionFull,
+    vcsVariant
   )
 
   expect(rendered).equals(html)
