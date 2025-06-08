@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "name": "Run vite",
+      "request": "launch",
+      "runtimeArgs": ["dev"],
+      "runtimeExecutable": "vite",
+      "type": "node"
+    }
+  ],
+  "version": "0.2.0"
+}

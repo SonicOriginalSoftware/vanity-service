@@ -1,0 +1,22 @@
+export async function render(
+  originalHost: string,
+  redirectHost: string,
+  name: string,
+  version?: string
+): Promise<string> {
+  const original = (version && `${originalHost}/${name}/v${version}`) || `${originalHost}/${name}`
+  const redirect = `${redirectHost}/${name}`
+
+  const meta = `<meta name="go-import" content="${original} git ${redirect}" />`
+
+  const html = `
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      ${meta}
+    </head>
+  </html>
+  `
+
+  return html
+}

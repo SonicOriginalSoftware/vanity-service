@@ -1,0 +1,17 @@
+{
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "< 2",
+    "@vitest/coverage-v8": "^3.2.2",
+    "vite": "< 7",
+    "vitest": "< 4",
+    "wrangler": "< 5"
+  },
+  "scripts": {
+    "build": "vite build",
+    "deploy": "npm run build && wrangler deploy",
+    "dev": "vite dev",
+    "preview": "npm run build && vite preview",
+    "test": "vitest"
+  },
+  "type": "module"
+}

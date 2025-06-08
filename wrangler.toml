@@ -1,0 +1,7 @@
+name = "vanity-service"
+compatibility_date = "2025-04-03"
+main = "./src/index.ts"
+
+[vars]
+ORIGINAL_HOST = "git.sonicoriginal.software"
+REDIRECT_HOST = "github.com/SonicOriginalSoftware"
