@@ -18,7 +18,7 @@ test("valid path with full semver version", async () => {
     vcsVariant: VcsVariant.Git,
   }
 
-  const module = await parse(path)
+  const module = await parse(path, VcsVariant.Git)
   console.log("Module:", module)
 
   expect(module).toEqual(expected)
@@ -32,7 +32,7 @@ test("valid path with shortened semver version", async () => {
     vcsVariant: VcsVariant.Git,
   }
 
-  const module = await parse(path)
+  const module = await parse(path, VcsVariant.Git)
   console.log("Module:", module)
 
   expect(module).toEqual(expected)
@@ -46,7 +46,7 @@ test("valid path with minimal semver version", async () => {
     vcsVariant: VcsVariant.Git,
   }
 
-  const module = await parse(path)
+  const module = await parse(path, VcsVariant.Git)
   console.log("Module:", module)
 
   expect(module).toEqual(expected)
@@ -59,18 +59,8 @@ test("valid path with no version", async () => {
     vcsVariant: VcsVariant.Git,
   }
 
-  const module = await parse(path)
+  const module = await parse(path, VcsVariant.Git)
   console.log("Module:", module)
 
   expect(module).toEqual(expected)
-})
-
-test("invalid path", async () => {
-  const path = ""
-
-  const module = parse(path)
-
-  await expect(module).rejects.toThrow(
-    "Invalid path. Module path must have at least two segments (user/repo)."
-  )
 })

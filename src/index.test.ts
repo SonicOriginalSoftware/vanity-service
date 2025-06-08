@@ -35,16 +35,6 @@ test("valid path with no go-get parameter", async () => {
   expect(text).toBe("Missing 'go-get' parameter.")
 })
 
-test("invalid path request", async () => {
-  const request = new Request(`${env.ORIGINAL_HOST}?go-get=1`)
-
-  const response = await all.fetch(request, env)
-  const text = await response.text()
-
-  expect(response.status).toBe(400)
-  expect(text).toBe("Invalid path. Module path must have at least two segments (user/repo).")
-})
-
 test("valid request", async () => {
   const original = `${env.ORIGINAL_HOST}/${validPath}/v${semanticVersionFull}`
   const request = new Request(`${original}?go-get=1`)

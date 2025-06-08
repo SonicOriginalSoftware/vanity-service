@@ -3,6 +3,7 @@ import { healthCheck } from "./health.js"
 import { render } from "./html.js"
 import type { Module } from "./module.js"
 import { parse } from "./parse_module.js"
+import { VcsVariant } from "./vcs_variant.js"
 
 async function fetch(request: Request, env: Env): Promise<Response> {
   console.debug("Received request:", request.method, request.url)
@@ -26,9 +27,10 @@ async function fetch(request: Request, env: Env): Promise<Response> {
     })
   }
 
+  const vcsVariant = VcsVariant.Git
   let module: Module
   try {
-    module = await parse(url.pathname)
+    module = await parse(url.pathname, vcsVariant)
   } catch (error) {
     console.error("Error parsing module path:", error)
     return new Response(error.message, { status: 400, headers: { "Content-Type": "text/plain" } })
