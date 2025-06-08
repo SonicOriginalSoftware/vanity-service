@@ -7,7 +7,7 @@ export async function render(
   const original = (version && `${originalHost}/${name}/v${version}`) || `${originalHost}/${name}`
   const redirect = `${redirectHost}/${name}`
 
-  const meta = `<meta name="go-import" content="${original} git ${redirect}" />`
+  const meta = `<meta name="go-import" content="${original} mod ${redirect}" />`
 
   const html = `
   <!DOCTYPE html>

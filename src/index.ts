@@ -1,6 +1,7 @@
 import type { Env } from "./env.js"
 import { healthCheck } from "./health.js"
 import { render } from "./html.js"
+import type { Module } from "./module.js"
 import { parse } from "./parse_module.js"
 
 async function fetch(request: Request, env: Env): Promise<Response> {
@@ -17,8 +18,7 @@ async function fetch(request: Request, env: Env): Promise<Response> {
   const url = new URL(request.url)
 
   if (url.pathname === "/health") return healthCheck()
-
-  if (!url.searchParams.has("go-get")) {
+  else if (!url.searchParams.has("go-get")) {
     console.error("Missing 'go-get' parameter in request.")
     return new Response("Missing 'go-get' parameter.", {
       status: 400,
@@ -26,15 +26,13 @@ async function fetch(request: Request, env: Env): Promise<Response> {
     })
   }
 
-  if (url.pathname === "/") {
-    console.error("Invalid path request.")
-    return new Response("Invalid path. Please specify a module path.", {
-      status: 404,
-      headers: { "Content-Type": "text/plain" },
-    })
+  let module: Module
+  try {
+    module = await parse(url.pathname)
+  } catch (error) {
+    console.error("Error parsing module path:", error)
+    return new Response(error.message, { status: 400, headers: { "Content-Type": "text/plain" } })
   }
-
-  const module = await parse(url.pathname)
 
   console.debug("Looking up module:", module)
 
