@@ -6,6 +6,6 @@ keep_vars = true
 [observability.logs]
 enabled = true
 
-[vars]
-ORIGINAL_HOST = ""
-REDIRECT_HOST = ""
+# [vars]
+# ORIGINAL_HOST = ""
+# REDIRECT_HOST = ""
