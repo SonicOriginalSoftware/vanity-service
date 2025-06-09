@@ -1,4 +1,4 @@
-export async function healthCheck(): Promise<Response> {
+export async function handle(): Promise<Response> {
   const responseBody = JSON.stringify({ status: "healthy" })
 
   return new Response(responseBody, {

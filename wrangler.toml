@@ -1,6 +1,6 @@
 name = "vanity-service"
 compatibility_date = "2025-04-03"
-main = "./src/index.ts"
+main = "./index.ts"
 keep_vars = true
 
 [observability.logs]

@@ -1,4 +1,4 @@
-import type { Module } from "./module.ts"
+import type { Module } from "./module.js"
 import { VcsVariant } from "./vcs_variant.js"
 
 export async function parse(path: string, vcsVariant: VcsVariant): Promise<Module> {
