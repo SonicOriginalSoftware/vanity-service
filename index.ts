@@ -9,13 +9,15 @@ async function fetch(request: Request, env: Env): Promise<Response> {
   const path = url.pathname
   const params = url.searchParams
 
-  if (path === "/health") return healthHandler()
-  else if (params.has("go-get")) return goGetHandler(path, env)
-  else {
+  if (path === "/health") {
+    return healthHandler()
+  } else if (params.has("go-get")) {
+    return goGetHandler(path, env)
+  } else {
     console.error("Bad Request:", path, url.searchParams.toString())
     return new Response("Bad Request", {
-      status: 400,
       headers: { "Content-Type": "text/plain" },
+      status: 400,
     })
   }
 }

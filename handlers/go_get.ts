@@ -5,6 +5,7 @@ import { VcsVariant } from "../lib/vcs_variant.js"
 
 export async function handle(pathname: string, env: Env): Promise<Response> {
   const vcsVariant = VcsVariant.Git
+  console.debug("Received request for path:", pathname)
   let module = await parse(pathname, vcsVariant)
 
   console.debug("Looking up module:", JSON.stringify(module))
